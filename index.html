@@ -1,0 +1,1881 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f5f3f0">
+    <meta name="description" content="Gestalte deine individuelle Schieferplatte mit Fotogravur. Perfekt für Gedenktafeln, Türschilder & Geschenke. Kostenloser Versand mit DHL.">
+    <meta name="keywords" content="Schieferplatte, Gravur, Fotogravur, Gedenktafel, personalisiert, Geschenk, Türschild">
+    <meta property="og:title" content="Gravur-Konfigurator | Dein Moment in Stein">
+    <meta property="og:description" content="Gestalte deine individuelle Schieferplatte mit Fotogravur. Kostenloser Versand.">
+    <meta property="og:type" content="website">
+    <title>Gravur-Konfigurator | Schieferplatte mit Fotogravur | Get Your Boxx</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-light: #f5f3f0;
+            --bg-cream: #eae6e0;
+            --bg-warm: #e0dbd4;
+            --card-bg: #ffffff;
+            --slate-real: #3a3d3f;
+            --slate-dark: #2d2f31;
+            --slate-mid: #4a4d50;
+            --copper: #E89F02;
+            --copper-dark: #c98a02;
+            --copper-light: #f5b52a;
+            --text-dark: #1a1a1a;
+            --text-medium: #4a4a4a;
+            --text-light: #7a7a7a;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-light);
+            min-height: 100vh;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Subtle pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(232, 159, 2, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(232, 159, 2, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--copper);
+            letter-spacing: 0.08em;
+        }
+
+        .brand-tagline {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .brand-tagline::before {
+            content: '„';
+        }
+
+        .brand-tagline::after {
+            content: '"';
+        }
+
+        .logo-mark {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--copper), transparent);
+            margin: 0 auto 25px;
+            border-radius: 2px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: var(--copper);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Steps Bar */
+        .steps-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 45px;
+            padding: 20px;
+            background: var(--card-bg);
+            border-radius: 50px;
+            box-shadow: var(--shadow-soft);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 24px;
+            height: 24px;
+            background: var(--copper);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .step-text {
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .step-divider {
+            width: 30px;
+            height: 2px;
+            background: var(--bg-warm);
+            border-radius: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .steps-bar {
+                flex-direction: column;
+                border-radius: 20px;
+                gap: 12px;
+                padding: 20px 25px;
+            }
+
+            .step-divider {
+                width: 2px;
+                height: 15px;
+            }
+        }
+
+        /* Upload Section */
+        .upload-section {
+            max-width: 480px;
+            margin: 0 auto 50px;
+        }
+
+        .upload-area {
+            position: relative;
+            border: 2px dashed var(--border-light);
+            border-radius: 16px;
+            padding: 40px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .upload-area:hover {
+            border-color: var(--copper);
+            background: #fffdfb;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--copper);
+            background: rgba(232, 159, 2, 0.05);
+            transform: scale(1.01);
+        }
+
+        .upload-area.has-image {
+            border-style: solid;
+            border-color: var(--copper);
+            background: rgba(232, 159, 2, 0.03);
+        }
+
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            background: var(--bg-cream);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover .upload-icon {
+            background: rgba(232, 159, 2, 0.1);
+            transform: scale(1.05);
+        }
+
+        .upload-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--copper);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .upload-text {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        .upload-text strong {
+            color: var(--copper);
+            font-weight: 600;
+        }
+
+        .upload-formats {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 0.1em;
+        }
+
+        #imageUpload {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            font-size: 0;
+            -webkit-appearance: none;
+        }
+
+        .image-preview-info {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .upload-area.has-image .upload-default {
+            display: none;
+        }
+
+        .upload-area.has-image .image-preview-info {
+            display: flex;
+        }
+
+        .preview-thumb {
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid var(--copper);
+        }
+
+        .preview-details {
+            text-align: left;
+        }
+
+        .preview-name {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 3px;
+            font-size: 0.95rem;
+        }
+
+        .preview-change {
+            font-size: 0.8rem;
+            color: var(--copper);
+        }
+
+        /* Plates Section */
+        .plates-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .section-title p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .plates-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.4fr;
+            gap: 25px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .plates-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+            }
+        }
+
+        /* Plate Card */
+        .plate-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            min-height: 420px;
+        }
+
+        .plate-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--bg-warm);
+        }
+
+        .plate-card.selected {
+            border-color: #25D366;
+            box-shadow: 
+                var(--shadow-medium),
+                0 0 0 4px rgba(37, 211, 102, 0.15);
+        }
+
+        .plate-card.selected::after {
+            content: '✓ Ausgewählt';
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            padding: 8px 14px;
+            background: #25D366;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Hint to click plate */
+        .plate-click-hint {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--copper);
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .plate-card:not(.selected) .plate-click-hint {
+            opacity: 1;
+        }
+
+        .plate-card.selected .plate-click-hint {
+            opacity: 0;
+        }
+
+        /* Subtle pulse animation when image is uploaded */
+        @keyframes subtlePulse {
+            0%, 100% { box-shadow: var(--shadow-soft); }
+            50% { box-shadow: 0 4px 25px rgba(232, 159, 2, 0.25); }
+        }
+
+        .plates-ready .plate-card:not(.selected) {
+            animation: subtlePulse 2s ease-in-out infinite;
+        }
+
+        .plates-ready .plate-card.selected {
+            animation: none;
+        }
+
+        .plate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .plate-title {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .plate-label {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-weight: 500;
+        }
+
+        .plate-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .plate-size {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 0.02em;
+            margin-top: 2px;
+        }
+
+        .plate-extra {
+            font-size: 0.7rem;
+            color: var(--copper);
+            font-weight: 500;
+            margin-top: 3px;
+        }
+
+        .plate-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--copper);
+        }
+
+        /* Canvas Container - LIGHT background for contrast */
+        .plate-canvas-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-cream);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            flex-grow: 1;
+        }
+
+        .plate-canvas-container.rectangle {
+            aspect-ratio: auto;
+        }
+
+        .plate-viewport {
+            position: relative;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            /* Realistic slate shadow */
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.25),
+                0 3px 10px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .plate-viewport.round {
+            border-radius: 50%;
+        }
+
+        .plate-viewport.square {
+            border-radius: 4px;
+        }
+
+        .plate-viewport.rectangle {
+            border-radius: 4px;
+        }
+
+        /* Realistic slate base - angelehnt an echten Schiefer */
+        .slate-base {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Dunkleres, bläulich-graues Schiefer */
+            background: 
+                /* Wellige horizontale Schichtlinien */
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='wave'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.06' numOctaves='3' seed='5' stitchTiles='stitch' result='turbulence'/%3E%3CfeDisplacementMap in2='turbulence' in='SourceGraphic' scale='8' xChannelSelector='R' yChannelSelector='G'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='%234a4e52' filter='url(%23wave)'/%3E%3C/svg%3E"),
+                /* Basis-Farbverlauf mit welligen Schichten */
+                repeating-linear-gradient(
+                    178deg,
+                    #4a4e52 0px,
+                    #53575b 3px,
+                    #4d5155 8px,
+                    #585c60 12px,
+                    #4f5357 18px,
+                    #545861 22px,
+                    #4b4f53 28px,
+                    #515559 35px
+                ),
+                /* Subtile diagonale Adern */
+                linear-gradient(
+                    165deg,
+                    transparent 0%,
+                    rgba(70,75,80,0.3) 8%,
+                    transparent 10%,
+                    transparent 25%,
+                    rgba(60,65,70,0.25) 27%,
+                    transparent 29%,
+                    transparent 50%,
+                    rgba(75,80,85,0.2) 52%,
+                    transparent 54%,
+                    transparent 70%,
+                    rgba(55,60,65,0.25) 72%,
+                    transparent 74%,
+                    transparent 90%,
+                    rgba(65,70,75,0.2) 92%,
+                    transparent 94%
+                ),
+                /* Grundfarbe - kälteres Grau */
+                linear-gradient(
+                    135deg,
+                    #4a4e52 0%,
+                    #515559 20%,
+                    #484c50 40%,
+                    #535760 60%,
+                    #4c5054 80%,
+                    #4f5357 100%
+                );
+            z-index: 1;
+        }
+
+        /* Wellige Schichtstruktur */
+        .slate-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='slate'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015 0.08' numOctaves='5' seed='15' stitchTiles='stitch' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23slate)'/%3E%3C/svg%3E");
+            opacity: 0.35;
+            z-index: 2;
+            mix-blend-mode: soft-light;
+        }
+
+        /* Feine Körnung/Maserung */
+        .slate-grain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            opacity: 0.12;
+            z-index: 3;
+            mix-blend-mode: overlay;
+        }
+
+        /* Glanzstellen/Highlights wie bei echtem Schiefer */
+        .slate-layers {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                /* Subtile Lichtreflexe */
+                radial-gradient(
+                    ellipse 80% 20% at 30% 25%,
+                    rgba(255,255,255,0.06) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    ellipse 60% 15% at 70% 60%,
+                    rgba(255,255,255,0.04) 0%,
+                    transparent 50%
+                ),
+                radial-gradient(
+                    ellipse 90% 25% at 50% 80%,
+                    rgba(255,255,255,0.05) 0%,
+                    transparent 50%
+                ),
+                /* Wellige Linien */
+                repeating-linear-gradient(
+                    182deg,
+                    transparent 0px,
+                    transparent 6px,
+                    rgba(255,255,255,0.025) 7px,
+                    transparent 8px,
+                    transparent 15px,
+                    rgba(0,0,0,0.04) 16px,
+                    transparent 17px,
+                    transparent 25px
+                );
+            z-index: 4;
+            opacity: 1;
+        }
+
+        .plate-viewport.round .slate-layers {
+            border-radius: 50%;
+        }
+
+        /* Edge highlight for 3D effect */
+        .slate-edge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .plate-viewport.round .slate-edge {
+            background: radial-gradient(
+                circle at 30% 30%,
+                rgba(255,255,255,0.08) 0%,
+                transparent 50%
+            );
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+            border-radius: 50%;
+        }
+
+        .plate-viewport.square .slate-edge,
+        .plate-viewport.rectangle .slate-edge {
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.06) 0%,
+                transparent 30%,
+                transparent 70%,
+                rgba(0,0,0,0.1) 100%
+            );
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+
+        /* Schieferrand - raue Kante die das Bild überlagert */
+        .slate-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .plate-viewport.round .slate-border {
+            border-radius: 50%;
+            box-shadow: inset 0 0 12px 4px rgb(58, 61, 63);
+        }
+
+        .plate-viewport.square .slate-border {
+            box-shadow: inset 0 0 10px 3px rgb(58, 61, 63);
+        }
+
+        .plate-viewport.rectangle .slate-border {
+            box-shadow: inset 0 0 10px 3px rgb(58, 61, 63);
+        }
+
+        /* Noise overlay für den Rand */
+        .slate-border-texture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 8;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            mix-blend-mode: overlay;
+        }
+
+        .plate-viewport.round .slate-border-texture {
+            border-radius: 50%;
+        }
+
+        /* Image inside plate - wie eingelasert */
+        .plate-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            /* Gravur-Effekt: Schwarz-Weiß */
+            filter: grayscale(100%) contrast(1.05);
+            opacity: 0.40;
+            cursor: grab;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            touch-action: none;
+            z-index: 5;
+        }
+
+        .plate-image:active {
+            cursor: grabbing;
+        }
+
+        .plate-image.dragging {
+            cursor: grabbing;
+            -webkit-transition: none !important;
+            transition: none !important;
+        }
+
+        /* Empty state */
+        .plate-empty {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: rgba(255,255,255,0.4);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .plate-empty svg {
+            width: 35px;
+            height: 35px;
+            stroke: rgba(255,255,255,0.3);
+            fill: none;
+            stroke-width: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .plate-empty span {
+            display: block;
+            font-size: 0.8rem;
+        }
+
+        .plate-viewport.has-image .plate-empty {
+            display: none;
+        }
+
+        /* Zoom Control */
+        .plate-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        .plate-card:hover .plate-controls,
+        .plate-viewport.has-image ~ .plate-controls {
+            opacity: 1;
+        }
+
+        .zoom-slider {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 110px;
+            height: 4px;
+            background: var(--bg-warm);
+            border-radius: 2px;
+            outline: none;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .zoom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--copper);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            margin-top: -8px;
+        }
+
+        .zoom-slider::-webkit-slider-runnable-track {
+            height: 4px;
+            background: var(--bg-warm);
+            border-radius: 2px;
+        }
+
+        .zoom-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: var(--copper);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .zoom-slider::-moz-range-track {
+            height: 4px;
+            background: var(--bg-warm);
+            border-radius: 2px;
+        }
+
+        .zoom-icon {
+            width: 14px;
+            height: 14px;
+            stroke: var(--text-light);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 16px 35px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .cta-button.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .cta-button.active:hover {
+            background: #1fb855;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .cta-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .cta-text strong {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .cta-text small {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .cta-button .spinner {
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-hint {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .email-fallback {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .email-fallback a {
+            color: var(--copper);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .email-fallback a:hover {
+            text-decoration: underline;
+        }
+
+        /* Instructions */
+        .instructions {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .instruction {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .instruction svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--copper);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            margin-top: 60px;
+            padding: 35px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .trust-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .trust-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--copper);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .trust-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .trust-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .trust-desc {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* Use Cases */
+        .usecases-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .usecases-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .usecases-text span {
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonial-section {
+            margin-top: 40px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+        }
+
+        .testimonial {
+            text-align: center;
+            padding: 22px 20px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .testimonial-stars {
+            color: #f5a623;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .footer-brand {
+            font-weight: 500;
+        }
+
+        .footer-divider {
+            opacity: 0.4;
+        }
+
+        .footer-link {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: var(--copper);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        header { animation: fadeUp 0.6s ease-out; }
+        .upload-section { animation: fadeUp 0.6s ease-out 0.1s both; }
+        .plates-section { animation: fadeUp 0.6s ease-out 0.15s both; }
+        .plate-card:nth-child(1) { animation: fadeUp 0.5s ease-out 0.2s both; }
+        .plate-card:nth-child(2) { animation: fadeUp 0.5s ease-out 0.25s both; }
+        .plate-card:nth-child(3) { animation: fadeUp 0.5s ease-out 0.3s both; }
+        .cta-section { animation: fadeUp 0.6s ease-out 0.35s both; }
+        .trust-section { animation: fadeUp 0.6s ease-out 0.4s both; }
+        .usecases-section { animation: fadeUp 0.6s ease-out 0.45s both; }
+        .testimonial-section { animation: fadeUp 0.6s ease-out 0.5s both; }
+        .footer { animation: fadeUp 0.6s ease-out 0.55s both; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <span class="brand-name">Get Your Boxx</span>
+                <span class="brand-tagline">Dein Moment in Stein</span>
+            </div>
+            <div class="logo-mark"></div>
+            <h1>Gravur<span>-</span>Konfigurator</h1>
+            <p class="subtitle">Schieferplatten individuell gestalten</p>
+        </header>
+
+        <!-- Steps -->
+        <div class="steps-bar">
+            <div class="step">
+                <span class="step-number">1</span>
+                <span class="step-text">Bild hochladen</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step">
+                <span class="step-number">2</span>
+                <span class="step-text">Platte auswählen</span>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-text">Unverbindlich anfragen</span>
+            </div>
+        </div>
+
+        <section class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="imageUpload" accept="image/*">
+                <div class="upload-default">
+                    <div class="upload-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <p class="upload-text">
+                        <strong>Bild hochladen</strong><br>
+                        Klicken oder hierher ziehen
+                    </p>
+                    <p class="upload-formats">JPG • PNG • WebP</p>
+                </div>
+                <div class="image-preview-info">
+                    <img class="preview-thumb" id="previewThumb" src="" alt="Preview">
+                    <div class="preview-details">
+                        <div class="preview-name" id="previewName">bild.jpg</div>
+                        <div class="preview-change">Klicken zum Ändern</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="plates-section">
+            <div class="section-title">
+                <h2>Wähle deine Platte</h2>
+                <p>Verschiebe das Bild auf jeder Platte für den perfekten Ausschnitt</p>
+            </div>
+
+            <div class="plates-grid">
+                <!-- Round Plate -->
+                <div class="plate-card" data-format="round">
+                    <div class="plate-header">
+                        <div class="plate-title">
+                            <span class="plate-label">Schieferplatte</span>
+                            <span class="plate-name">Rund</span>
+                            <span class="plate-size">Ø 20 cm</span>
+                            <span class="plate-extra">inkl. Holzständer</span>
+                        </div>
+                        <span class="plate-price">35 €</span>
+                    </div>
+                    <div class="plate-canvas-container">
+                        <div class="plate-viewport round" data-format="round" style="width: 200px; height: 200px;">
+                            <div class="slate-base"></div>
+                            <div class="slate-texture"></div>
+                            <div class="slate-grain"></div>
+                            <div class="slate-layers"></div>
+                            <div class="slate-edge"></div>
+                            <div class="slate-border"></div>
+                            <div class="slate-border-texture"></div>
+                            <div class="plate-empty">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                <span>Vorschau</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plate-controls">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                        <input type="range" class="zoom-slider" min="100" max="300" value="100" data-format="round">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                    <div class="plate-click-hint">↑ Zum Auswählen hier klicken</div>
+                </div>
+
+                <!-- Square Plate -->
+                <div class="plate-card" data-format="square">
+                    <div class="plate-header">
+                        <div class="plate-title">
+                            <span class="plate-label">Schieferplatte</span>
+                            <span class="plate-name">Quadratisch</span>
+                            <span class="plate-size">20 × 20 cm</span>
+                            <span class="plate-extra">inkl. Holzständer</span>
+                        </div>
+                        <span class="plate-price">50 €</span>
+                    </div>
+                    <div class="plate-canvas-container">
+                        <div class="plate-viewport square" data-format="square" style="width: 200px; height: 200px;">
+                            <div class="slate-base"></div>
+                            <div class="slate-texture"></div>
+                            <div class="slate-grain"></div>
+                            <div class="slate-layers"></div>
+                            <div class="slate-edge"></div>
+                            <div class="slate-border"></div>
+                            <div class="slate-border-texture"></div>
+                            <div class="plate-empty">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                <span>Vorschau</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plate-controls">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                        <input type="range" class="zoom-slider" min="100" max="300" value="100" data-format="square">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                    <div class="plate-click-hint">↑ Zum Auswählen hier klicken</div>
+                </div>
+
+                <!-- Rectangle Plate -->
+                <div class="plate-card" data-format="rectangle">
+                    <div class="plate-header">
+                        <div class="plate-title">
+                            <span class="plate-label">Schieferplatte</span>
+                            <span class="plate-name">Rechteckig</span>
+                            <span class="plate-size">30 × 20 cm</span>
+                            <span class="plate-extra">inkl. Holzständer</span>
+                        </div>
+                        <span class="plate-price">70 €</span>
+                    </div>
+                    <div class="plate-canvas-container rectangle">
+                        <div class="plate-viewport rectangle" data-format="rectangle" style="width: 280px; height: 187px;">
+                            <div class="slate-base"></div>
+                            <div class="slate-texture"></div>
+                            <div class="slate-grain"></div>
+                            <div class="slate-layers"></div>
+                            <div class="slate-edge"></div>
+                            <div class="slate-border"></div>
+                            <div class="slate-border-texture"></div>
+                            <div class="plate-empty">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                                <span>Vorschau</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="plate-controls">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                        <input type="range" class="zoom-slider" min="100" max="300" value="100" data-format="rectangle">
+                        <svg class="zoom-icon" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                    <div class="plate-click-hint">↑ Zum Auswählen hier klicken</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <button class="cta-button" id="ctaButton">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                <span class="cta-text">
+                    <strong>Unverbindlich anfragen</strong>
+                    <small>kostenlos • per WhatsApp</small>
+                </span>
+            </button>
+            <p class="cta-hint">Wir melden uns persönlich bei dir und besprechen dein Wunsch-Bild</p>
+            <p class="email-fallback">Kein WhatsApp? Schreib uns: <a href="mailto:info@getyourboxx.de">info@getyourboxx.de</a></p>
+
+            <div class="instructions">
+                <div class="instruction">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 9l-3 3 3 3"/>
+                        <path d="M9 5l3-3 3 3"/>
+                        <path d="M15 19l-3 3-3-3"/>
+                        <path d="M19 9l3 3-3 3"/>
+                    </svg>
+                    <span>Bild verschieben</span>
+                </div>
+                <div class="instruction">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <line x1="11" y1="8" x2="11" y2="14"/>
+                        <line x1="8" y1="11" x2="14" y2="11"/>
+                    </svg>
+                    <span>Zoom anpassen</span>
+                </div>
+                <div class="instruction">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    <span>Platte auswählen</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <div class="trust-items">
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <span class="trust-title">Individuell graviert</span>
+                        <span class="trust-desc">Dein Motiv, deine Platte</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9 12 11 14 15 10"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <span class="trust-title">Premium Qualität</span>
+                        <span class="trust-desc">Echter Naturschiefer</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="1" y="3" width="15" height="13" rx="2" ry="2"/>
+                            <path d="M16 8h4l3 3v5a2 2 0 0 1-2 2H16"/>
+                            <circle cx="5.5" cy="18.5" r="2.5"/>
+                            <circle cx="18.5" cy="18.5" r="2.5"/>
+                        </svg>
+                    </div>
+                    <div class="trust-text">
+                        <span class="trust-title">Kostenloser Versand</span>
+                        <span class="trust-desc">Mit DHL in 2-3 Werktagen</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="usecases-section">
+            <p class="usecases-text">Perfekt für <span>Gedenktafeln</span>, <span>Türschilder</span>, <span>Geschenke</span> & <span>Fotogravuren</span></p>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonial-section">
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">„Meine Oma ist letztes Jahr verstorben. Die Gedenkplatte hängt jetzt im Flur – jeder Besucher bleibt stehen und sagt wie schön sie ist."</p>
+                    <span class="testimonial-author">– Melanie K.</span>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">„Erst skeptisch ob das Foto gut rauskommt – dann sprachlos. Die Gravur ist gestochen scharf. Mein Mann hat beim Auspacken geweint."</p>
+                    <span class="testimonial-author">– Sandra W.</span>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">„Hab schon die dritte Platte bestellt. Einmal als Türschild, zweimal als Geschenk. Kommt immer mega an – und der Versand war super schnell!"</p>
+                    <span class="testimonial-author">– Thomas R.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <span class="footer-brand">© 2025 Get Your Boxx</span>
+                <span class="footer-divider">·</span>
+                <span class="footer-location">Balingen, Deutschland</span>
+                <span class="footer-divider">·</span>
+                <a href="https://www.getyourboxx.de/l/contact" class="footer-link">Impressum</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // State
+            let uploadedImageSrc = null;
+            let selectedFormat = null;
+            
+            // Per-plate state: position and zoom
+            const plateState = {
+                round: { x: 0, y: 0, zoom: 100 },
+                square: { x: 0, y: 0, zoom: 100 },
+                rectangle: { x: 0, y: 0, zoom: 100 }
+            };
+
+            // DOM Elements
+            const uploadArea = document.getElementById('uploadArea');
+            const imageUpload = document.getElementById('imageUpload');
+            const previewThumb = document.getElementById('previewThumb');
+            const previewName = document.getElementById('previewName');
+            const ctaButton = document.getElementById('ctaButton');
+            const plateCards = document.querySelectorAll('.plate-card');
+            const plateViewports = document.querySelectorAll('.plate-viewport');
+            const zoomSliders = document.querySelectorAll('.zoom-slider');
+
+            // Handle file upload
+            function handleFileUpload(file) {
+                if (!file || !file.type.startsWith('image/')) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImageSrc = e.target.result;
+                    
+                    // Update upload area
+                    uploadArea.classList.add('has-image');
+                    previewThumb.src = uploadedImageSrc;
+                    previewName.textContent = file.name;
+
+                    // Add image to all plates
+                    addImageToAllPlates();
+                    
+                    // Add visual hint that plates can be clicked
+                    document.querySelector('.plates-grid').classList.add('plates-ready');
+                    
+                    // Auto-select middle plate (Quadratisch) on first upload
+                    if (!selectedFormat) {
+                        const squareCard = document.querySelector('.plate-card[data-format="square"]');
+                        squareCard.classList.add('selected');
+                        selectedFormat = 'square';
+                    }
+                    
+                    // Update CTA button
+                    updateCtaButton();
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Add image to all plates
+            function addImageToAllPlates() {
+                plateViewports.forEach(viewport => {
+                    const format = viewport.dataset.format;
+                    
+                    // Remove existing image if any
+                    const existingImg = viewport.querySelector('.plate-image');
+                    if (existingImg) {
+                        existingImg.remove();
+                    }
+
+                    // Create new image
+                    const img = document.createElement('img');
+                    img.className = 'plate-image';
+                    img.src = uploadedImageSrc;
+                    img.draggable = false;
+                    
+                    // Wait for image to load to set initial scale
+                    img.onload = function() {
+                        const viewportWidth = viewport.offsetWidth;
+                        const viewportHeight = viewport.offsetHeight;
+                        const imgRatio = img.naturalWidth / img.naturalHeight;
+                        const viewportRatio = viewportWidth / viewportHeight;
+
+                        // Calculate scale to cover viewport
+                        let baseScale;
+                        if (imgRatio > viewportRatio) {
+                            baseScale = viewportHeight / img.naturalHeight;
+                        } else {
+                            baseScale = viewportWidth / img.naturalWidth;
+                        }
+
+                        // Store base scale for zoom calculations
+                        img.dataset.baseScale = baseScale;
+                        
+                        // Apply initial transform
+                        updateImageTransform(format);
+                    };
+
+                    viewport.appendChild(img);
+                    viewport.classList.add('has-image');
+
+                    // Setup drag functionality
+                    setupDrag(img, format);
+                });
+
+                // Reset zoom sliders
+                zoomSliders.forEach(slider => {
+                    slider.value = 100;
+                    const format = slider.dataset.format;
+                    plateState[format].zoom = 100;
+                    plateState[format].x = 0;
+                    plateState[format].y = 0;
+                });
+            }
+
+            // Update image transform based on state
+            function updateImageTransform(format) {
+                const viewport = document.querySelector(`.plate-viewport[data-format="${format}"]`);
+                const img = viewport.querySelector('.plate-image');
+                if (!img) return;
+
+                const state = plateState[format];
+                const baseScale = parseFloat(img.dataset.baseScale) || 1;
+                const scale = baseScale * (state.zoom / 100);
+
+                img.style.transform = `translate(calc(-50% + ${state.x}px), calc(-50% + ${state.y}px)) scale(${scale})`;
+            }
+
+            // Setup drag functionality
+            function setupDrag(img, format) {
+                let isDragging = false;
+                let startX, startY;
+                let startPosX, startPosY;
+
+                const getPoint = (e) => {
+                    if (e.touches && e.touches.length > 0) {
+                        return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                    }
+                    return { x: e.clientX, y: e.clientY };
+                };
+
+                const onStart = (e) => {
+                    e.preventDefault();
+                    isDragging = true;
+                    img.classList.add('dragging');
+
+                    const point = getPoint(e);
+                    startX = point.x;
+                    startY = point.y;
+                    startPosX = plateState[format].x;
+                    startPosY = plateState[format].y;
+                    
+                    // Auto-select this plate when dragging
+                    if (selectedFormat !== format) {
+                        plateCards.forEach(c => c.classList.remove('selected'));
+                        document.querySelector(`.plate-card[data-format="${format}"]`).classList.add('selected');
+                        selectedFormat = format;
+                        updateCtaButton();
+                    }
+                };
+
+                const onMove = (e) => {
+                    if (!isDragging) return;
+                    e.preventDefault();
+
+                    const point = getPoint(e);
+                    const deltaX = point.x - startX;
+                    const deltaY = point.y - startY;
+
+                    plateState[format].x = startPosX + deltaX;
+                    plateState[format].y = startPosY + deltaY;
+
+                    updateImageTransform(format);
+                };
+
+                const onEnd = (e) => {
+                    if (!isDragging) return;
+                    isDragging = false;
+                    justDragged = true;
+                    img.classList.remove('dragging');
+                    
+                    // Reset flag after a short delay
+                    setTimeout(() => { justDragged = false; }, 100);
+                };
+
+                // Mouse events
+                img.addEventListener('mousedown', onStart);
+                document.addEventListener('mousemove', onMove);
+                document.addEventListener('mouseup', onEnd);
+
+                // Touch events - iOS compatible
+                img.addEventListener('touchstart', onStart, { passive: false });
+                img.addEventListener('touchmove', onMove, { passive: false });
+                img.addEventListener('touchend', onEnd, { passive: false });
+                img.addEventListener('touchcancel', onEnd, { passive: false });
+            }
+
+            // Handle zoom slider
+            zoomSliders.forEach(slider => {
+                slider.addEventListener('input', function() {
+                    const format = this.dataset.format;
+                    plateState[format].zoom = parseInt(this.value);
+                    updateImageTransform(format);
+                    
+                    // Auto-select this plate when zooming
+                    if (selectedFormat !== format) {
+                        plateCards.forEach(c => c.classList.remove('selected'));
+                        document.querySelector(`.plate-card[data-format="${format}"]`).classList.add('selected');
+                        selectedFormat = format;
+                        updateCtaButton();
+                    }
+                });
+            });
+
+            // Track if we just dragged (to prevent deselection)
+            let justDragged = false;
+
+            // Handle plate selection
+            plateCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't select if clicking on slider
+                    if (e.target.classList.contains('zoom-slider')) return;
+                    
+                    // Don't deselect if we just finished dragging
+                    if (justDragged) {
+                        justDragged = false;
+                        return;
+                    }
+
+                    const format = this.dataset.format;
+                    
+                    // Select this plate (no toggle off - always select)
+                    plateCards.forEach(c => c.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedFormat = format;
+
+                    updateCtaButton();
+                });
+            });
+
+            // Update CTA button state
+            function updateCtaButton() {
+                if (uploadedImageSrc && selectedFormat) {
+                    ctaButton.classList.add('active');
+                } else {
+                    ctaButton.classList.remove('active');
+                }
+            }
+
+            // File input change
+            imageUpload.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    handleFileUpload(e.target.files[0]);
+                }
+            });
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    handleFileUpload(e.dataTransfer.files[0]);
+                }
+            });
+
+            // CTA button click - Upload to imgbb, then WhatsApp with coordinates + image link
+            ctaButton.addEventListener('click', async function() {
+                if (!uploadedImageSrc || !selectedFormat) return;
+
+                const originalContent = ctaButton.innerHTML;
+                
+                // Loading state
+                ctaButton.innerHTML = `
+                    <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.3"/>
+                        <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+                    </svg>
+                    <span class="cta-text">
+                        <strong>Bild wird hochgeladen...</strong>
+                        <small>einen Moment bitte</small>
+                    </span>
+                `;
+                ctaButton.style.pointerEvents = 'none';
+
+                try {
+                    // Extract base64 data (remove data:image/...;base64, prefix)
+                    const base64Data = uploadedImageSrc.split(',')[1];
+                    
+                    // Upload to imgbb
+                    const formData = new FormData();
+                    formData.append('key', '08f31ef48294759c12765e4bf81e8b9d');
+                    formData.append('image', base64Data);
+                    
+                    const response = await fetch('https://api.imgbb.com/1/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (!result.success) {
+                        throw new Error('Upload failed');
+                    }
+                    
+                    const imageUrl = result.data.url;
+
+                    const formatNames = {
+                        round: 'Rund (Ø 20cm)',
+                        square: 'Quadratisch (20×20cm)',
+                        rectangle: 'Rechteckig (30×20cm)'
+                    };
+
+                    const prices = {
+                        round: '35€',
+                        square: '50€',
+                        rectangle: '70€'
+                    };
+
+                    // Get the current state for selected format
+                    const state = plateState[selectedFormat];
+                    
+                    // Round values for cleaner display
+                    const xPos = Math.round(state.x);
+                    const yPos = Math.round(state.y);
+                    const zoomVal = Math.round(state.zoom);
+
+                    const message = `Hi! Ich interessiere mich für eine Schieferplatte:
+
+📐 Format: ${formatNames[selectedFormat]}
+💰 Preis: ${prices[selectedFormat]}
+
+🎯 Mein Bildausschnitt:
+Position: X=${xPos} | Y=${yPos}
+Zoom: ${zoomVal}%
+
+🖼️ Mein Bild: ${imageUrl}`;
+
+                    const whatsappUrl = `https://wa.me/4915224242302?text=${encodeURIComponent(message)}`;
+                    window.location.href = whatsappUrl;
+
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    alert('Das Bild konnte nicht hochgeladen werden. Bitte versuche es nochmal.');
+                } finally {
+                    // Reset button
+                    ctaButton.innerHTML = originalContent;
+                    ctaButton.style.pointerEvents = 'auto';
+                }
+            });
+
+            // Prevent zoom slider from triggering card selection
+            zoomSliders.forEach(slider => {
+                slider.addEventListener('click', e => e.stopPropagation());
+                slider.addEventListener('mousedown', e => e.stopPropagation());
+            });
+
+        })();
+    </script>
+</body>
+</html>
